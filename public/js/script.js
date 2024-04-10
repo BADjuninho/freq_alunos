@@ -47,6 +47,7 @@ registrar.addEventListener('click', () => {
 });
 
 fechar.addEventListener('click', () => {
+    caixa_toggle.classList.toggle('exibindo');
     container.classList.remove('ativo')
     container.classList.remove('popup-ativo');
     container_geral.classList.remove('oculto');
