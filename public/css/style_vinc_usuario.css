@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    align-items: center;
+    background-color: #4070f4;
+}
+
+.container {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto 50px ;
+}
+
+.container header {
+    margin-bottom: 25px;
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    padding-bottom: 5px;
+}
+
+.container header img {
+    width: 55px;
+    height: 40px;
+}
+
+.container header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 350px;
+    border-radius: 8px;
+    background-color: #4070f4;
+}
+
+.container form {
+    position: relative;
+    margin-top: 16px;
+    min-height: 200px;
+    background-color: #fff;
+    
+}
+
+.container form .detalhes-pessoal {
+    margin-top: 10px;
+}
+
+.container form .titulo {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+
+.container form .campos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form .campos .campo-input {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 2 - 15px);
+    margin: 4px 0;
+}
+
+.campo-input label {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+}
+
+.campo-input input {    
+    padding: 0 15px;
+    outline: none;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+    height: 42px;
+    margin: 8px 0;
+}
+.campo-input input:is(:focus, :valid) {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+}
+
+.btn-login {
+    margin-top: 30px;
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #162938;
+    font-weight: 500;
+    transition: .5s;
+    height: 45px;
+    background: #1b62b7;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    justify-content: end;
+}
+
+.btn-login:hover {
+    background: #ccc;
+    color: #162938;
+}
