@@ -127,22 +127,7 @@
     // Fecha a conexão
     $conn->close();
     ?>
-
-    <script>
-        function filtrarUsuarios() {
-            var cpf = document.getElementById("cpf").value;
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("tabelaUsuarios").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "php/pesquisar_cpf.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("cpf=" + cpf);
-        }
-    </script>
-
+    <script src="js/listar_usuarios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>

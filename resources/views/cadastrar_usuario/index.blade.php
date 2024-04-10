@@ -77,23 +77,7 @@
             </div>
         </form>
     </div>
-    <script>
-        const mainForm = document.querySelector('.form');
-        mainForm.addEventListener('input', (e) => {
-            const element = e.target;
-
-            if (element.id === 'cnpj' || element.id === 'cpf') {
-
-                element.value = element.value.replace(/\D/g, '');
-
-                if (element.id === 'cpf' && element.value.length > 11) {
-                    element.value = element.value.slice(0, 11);
-                } else if (element.id === 'cnpj' && element.value.length > 14) {
-                    element.value = element.value.slice(0, 14);
-                }
-            }
-        });
-    </script>
+    <script src="js/only_nums.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>

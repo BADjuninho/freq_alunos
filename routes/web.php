@@ -118,3 +118,8 @@ Route::get('/listar_usuarios_empresa', function (Illuminate\Http\Request $reques
     $id = $request->query('id');// Obtém o ID da empresa da URL
     return view('/cadastrar_empresa/listar_usuarios_empresa', [$id=>'id']);// Exibe o formulário de listagem de usuarios de uma empresa com ID pré-inserido
 });
+
+
+Route::get('/home_alunos', function () {
+    return view('/alunos/index'); // Exibe a listagem de empresas de um usuário
+})->name('home_alunos');

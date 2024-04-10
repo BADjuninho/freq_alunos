@@ -94,21 +94,7 @@
             </table>
         </div>
     </section>
-
-    <script>
-        function filtrarRelatorios() {
-            var mesSelecionado = document.getElementById("mes").value;
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("tabelaRelatorios").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "php/pesquisar_relatorio.php", true); // Substitua 'filtro_relatorios.php' pelo nome do arquivo PHP que processa a solicitação AJAX
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("mes=" + mesSelecionado);
-        }
-    </script>
+    <script src="js/listar_empresa_relatorios.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

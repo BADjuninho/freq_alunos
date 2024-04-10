@@ -86,19 +86,7 @@
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
-        <script>
-            function filtrarEmpresas(cnpj) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("tabelaEmpresas").innerHTML = this.responseText;
-                    }
-                };
-                xhttp.open("POST", "php/pesquisar_cnpj.php", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("cnpj=" + cnpj);
-            }
-        </script>
+        <script src="js/listar_empresa.js"></script>
 </body>
 
 </html>
