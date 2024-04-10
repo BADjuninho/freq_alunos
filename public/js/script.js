@@ -26,6 +26,7 @@ btnLogin.addEventListener('click', () => {
     container.classList.toggle('popup-ativo');
     container_geral.classList.toggle('oculto');
     caixa_toggle.classList.toggle('exibindo');
+    caixa_toggle.style.display='block';
 });
 
 login.addEventListener('click', () => {
