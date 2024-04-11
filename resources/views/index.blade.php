@@ -100,50 +100,77 @@
                 </div>
             </form>
         </div>
-        <div class="caixa-registrar" style="width: 300px; display: none;">
+        <div class="caixa-registrar campos" style="width: 300px; display: none;">
             <h1 class="h1-register" style="Color :#1b62b7; font-weight: 600;">Registrar</h1>
-            <form action="php/cadastrar_aluno.php" method="post">
-                <input type="hidden" name="matricula" id="matricula">
-                <div class="input-box">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    <input type="text" name="nome" required>
-                    <label for="">Nome</label>
-                </div>
-                <div class="input-box">
-                    <ion-icon name="unlink-outline"></ion-icon>
-                    <input type="text" name="cpf" required>
-                    <label for="">CPF</label>
-                </div>
-                <div class="input-box">
-                    <ion-icon name="person-outline"></ion-icon>
-                    <input type="text" name="usuario" required>
-                    <label for="">Usuario</label>
-                </div>
-                <div class="input-box" style="margin-bottom: 0;">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" name="senha" required>
-                    <label for="">Senha</label>
+            <form action="php/cadastrar_aluno.php" method="post" id="registroForm">
+                <div class="conteudo-aluno-reg">
+                    <input type="hidden" name="matricula" id="matricula">
+                    <div class="input-box">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="text" name="nome" required>
+                        <label for="">Nome</label>
+                    </div>
+                    <div class="input-box campos-input">
+                        <ion-icon name="unlink-outline"></ion-icon>
+                        <input type="text" name="cpf" required>
+                        <label for="">CPF</label>
+                    </div>
+                    <div class="input-box campos-input">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" name="usuario" required>
+                        <label for="">Usuario</label>
+                    </div>
+                    <div class="input-box campos-input" style="margin-bottom: 0;">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" name="senha" required>
+                        <label for="">Senha</label>
+                    </div>
+                    <div>
+                        <label for="dt_nascimento" style="float:left;">Data de Nascimento:</label>
+                        <div class="input-box" style="border: none; outline: none; position:relative; top:0;">
+                            <input id="dt_nascimento" type="date" name="dt_nascimento" required>
+                        </div>
+                    </div>
+                    <div class="input-box" style="border:none;">
+                        <label class="form-label" style="position: relative; float: left; margin-top: 15px; margin-right: 20px; margin-bottom: 50px;">Perfil: </label>
+                        <div class="select-dropdown">
+                            <select name="status" id="status">
+                                <option value="Aluno">Aluno</option>
+                                <option value="Ex-Aluno">Ex-Aluno</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="">Endereço</label>
+                        <input type="text" name="endereco" id="endereco" required>
+                    </div>
                 </div>
                 <div>
-                    <label for="dt_nascimento" style="float:left;">Data de Nascimento:</label>
-                    <div class="input-box" style="border: none; outline: none; position:relative; top:0;">
-                        <input type="date" name="dt_nascimento" required>
+                <div class="camposResponsavel" id="camposResponsavel" style="display: none; position: relative; float: left;">
+                    <a href="#" class="toggle-aluno-reg" onclick="voltar()"><ion-icon style=" margin-top: 50px;width: 50px; height: 50px;" name="arrow-back-outline"></ion-icon></a>
+                    <div class="input-box">
+                        <label for="">Nome do Responsavel</label>
+                        <input type="text" name="nome_responsavel" id="nome_responsavel">
+                    </div>
+                    <div class="input-box">
+                        <label for="">CPF do Responsavel</label>
+                        <input type="text" name="cpf_responsavel" id="cpf_responsavel">
+                    </div>
+                    <div>
+                        <label for="" style="float:left;">Data de Nascimento Do Responsavel:</label>
+                        <div class="input-box" style="border: none; outline: none; position:relative; top:0;">
+                            <input id="dt_nascimento_responsavel" type="date" name="dt_nascimento_responsavel" required>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="">Endereço do Responsavel</label>
+                        <input type="text" name="endereco_responsavel" id="endereco_responsavel">
                     </div>
                 </div>
-                <div class="input-box" style="border:none;">
-                    <label class="form-label" style="position: relative; float: left; margin-top: 15px; margin-right: 20px; margin-bottom: 50px;">Status: </label>
-                    <div class="select-dropdown">
-                        <select name="status" id="status">
-                            <option value="Aluno">Aluno</option>
-                            <option value="Ex-Aluno">Ex-Aluno</option>
-                        </select>
-                    </div>
                 </div>
-                <div>
-                    <button type="submit" class="btn">Registrar</button>
-                    <div class="login-registrar">
-                        <p>Já possui uma conta SENAI? <a href="#" class="registrar-link">Logar</a></p>
-                    </div>
+                <button type="submit" class="btn">Registrar</button>
+                <div class="login-registrar">
+                    <p>Já possui uma conta SENAI? <a href="#" class="registrar-link">Logar</a></p>
                 </div>
             </form>
         </div>
@@ -151,6 +178,39 @@
     <footer class="footer">
         <span class="text-light">Copyright © 2024 SENAI. Todos os direitos reservados.</span>
     </footer>
+    <script>
+        // Função para calcular a idade com base na data de nascimento fornecida
+        function calcularIdade(dataNascimento) {
+            var hoje = new Date();
+            var nascimento = new Date(dataNascimento);
+            var idade = hoje.getFullYear() - nascimento.getFullYear();
+            var mes = hoje.getMonth() - nascimento.getMonth();
+
+            if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+                idade--;
+            }
+
+            return idade;
+        }
+
+        // Função para mostrar ou ocultar os campos do responsável com base na idade calculada
+        function mostrarCamposResponsavel() {
+            var dataNascimento = document.getElementById("dt_nascimento").value;
+            var idade = calcularIdade(dataNascimento);
+            var camposResponsavel = document.getElementById("camposResponsavel");
+
+            if (idade < 18 && idade >= 0) {
+                camposResponsavel.style.display = "block";
+            } else {
+                camposResponsavel.style.display = "none";
+            }
+        }
+
+        // Adiciona um ouvinte de evento para o campo de data de nascimento
+        document.getElementById("dt_nascimento").addEventListener("change", function() {
+            mostrarCamposResponsavel();
+        });
+    </script>
     <script src="js/script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

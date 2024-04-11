@@ -120,6 +120,6 @@ Route::get('/listar_usuarios_empresa', function (Illuminate\Http\Request $reques
 });
 
 
-Route::get('/home_alunos', function () {
+Route::get('/listar_aluno', function () {
     return view('/alunos/index'); // Exibe a listagem de empresas de um usuário
-})->name('home_alunos');
+})->name('listar_aluno');

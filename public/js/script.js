@@ -22,16 +22,23 @@ const caixa_login_empresarial = document.querySelector('.caixa-login-empresarial
 const h1_register = document.querySelector('.h1-register');
 const h1_login = document.querySelector('.h1-login');
 
-btnLogin.addEventListener('click', () => {
+function toggleLogin() {
+    caixa_toggle.style.display = (caixa_toggle.style.display === 'block') ? 'none' : 'block';
     container.classList.toggle('popup-ativo');
     container_geral.classList.toggle('oculto');
     caixa_toggle.classList.toggle('exibindo');
-    caixa_toggle.style.display='block';
-});
+}
+
+function mudar(){
+    caixa_toggle.style.display = (caixa_toggle.style.display === 'block') ? 'none' : 'block';
+}
+btnLogin.addEventListener('click', toggleLogin);
+login.addEventListener('click', mudar);
+registrar.addEventListener('click', mudar);
+
 
 login.addEventListener('click', () => {
     container.classList.add('ativo');
-    caixa_toggle.style.display = 'none';
     caixa_registrar.style.display = 'block';
     caixa_login_empresarial.style.display = 'none';
     h1_register.textContent = 'Registrar';
@@ -40,7 +47,6 @@ login.addEventListener('click', () => {
 
 registrar.addEventListener('click', () => {
     container.classList.remove('ativo');
-    caixa_toggle.style.display = 'block';
     caixa_registrar.style.display = 'block';
     caixa_login_empresarial.style.display = 'none';
     h1_register.textContent = 'Registrar';
@@ -48,11 +54,12 @@ registrar.addEventListener('click', () => {
 });
 
 fechar.addEventListener('click', () => {
-    caixa_toggle.classList.toggle('exibindo');
+    caixa_toggle.classList.remove('exibindo');
     container.classList.remove('ativo')
     container.classList.remove('popup-ativo');
     container_geral.classList.remove('oculto');
     caixa_toggle.classList.remove('exibindo');
+    caixa_toggle.style.display = 'none';
     caixa_registrar.style.display = 'none';
     caixa_login_empresarial.style.display = 'none';
     h1_register.textContent = 'Registrar';
@@ -78,3 +85,46 @@ tipoContaSwitch.addEventListener('change', function() {
         caixaLoginEmpresarial.style.display = 'none';
     }
 });
+
+function calcularIdade() {
+    var dataNascimento = new Date(document.getElementById("dt_nascimento").value);
+    var hoje = new Date();
+    var idade = hoje.getFullYear() - dataNascimento.getFullYear();
+    var mes = hoje.getMonth() - dataNascimento.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
+        idade--;
+    }
+
+    return idade;
+}
+
+function mostrarCamposResponsavel() {
+    var idade = calcularIdade();
+
+    if (idade < 18) {
+        document.getElementById("camposResponsavel").style.display = "block";
+        container.classList.add('expandido');
+        caixaLogin.style.display = "none";
+        document.querySelector(".conteudo-aluno-reg").style.display = "none";
+    } else {
+        document.getElementById("camposResponsavel").style.display = "none";
+        container.classList.remove('expandido');
+    }
+}
+
+document.getElementById("dt_nascimento").addEventListener("input", function() {
+    mostrarCamposResponsavel();
+});
+
+
+function voltar() {
+    let conteudoAlunoReg = document.querySelector('.conteudo-aluno-reg');
+    let camposResponsavel = document.getElementById("camposResponsavel");
+    if (conteudoAlunoReg.style.display === 'none') {
+        conteudoAlunoReg.style.display = 'block';
+        camposResponsavel.style.display = 'none';
+    } else {
+        conteudoAlunoReg.style.display = 'none';
+    }
+}

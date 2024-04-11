@@ -31,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: /listar_funcionario");
         } else if ($row['cargo'] === "secretario" || $row['cargo'] === "Secretario" || $row['cargo'] === "Secretário") {
             header("Location: /listar_secretario");
+        } else if ($row['cargo'] === "Aluno" || $row['cargo'] === "aluno") {
+            header("Location: /listar_aluno");
         }
         exit(); // Saia após o redirecionamento
     } else {
