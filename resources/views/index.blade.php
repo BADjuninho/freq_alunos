@@ -159,7 +159,7 @@
                     <div>
                         <label for="" style="float:left;">Data de Nascimento Do Responsavel:</label>
                         <div class="input-box" style="border: none; outline: none; position:relative; top:0;">
-                            <input id="dt_nascimento_responsavel" type="date" name="dt_nascimento_responsavel" required>
+                            <input id="dt_nascimento_responsavel" type="date" name="dt_nascimento_responsavel">
                         </div>
                     </div>
                     <div class="input-box">
@@ -178,39 +178,6 @@
     <footer class="footer">
         <span class="text-light">Copyright © 2024 SENAI. Todos os direitos reservados.</span>
     </footer>
-    <script>
-        // Função para calcular a idade com base na data de nascimento fornecida
-        function calcularIdade(dataNascimento) {
-            var hoje = new Date();
-            var nascimento = new Date(dataNascimento);
-            var idade = hoje.getFullYear() - nascimento.getFullYear();
-            var mes = hoje.getMonth() - nascimento.getMonth();
-
-            if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-                idade--;
-            }
-
-            return idade;
-        }
-
-        // Função para mostrar ou ocultar os campos do responsável com base na idade calculada
-        function mostrarCamposResponsavel() {
-            var dataNascimento = document.getElementById("dt_nascimento").value;
-            var idade = calcularIdade(dataNascimento);
-            var camposResponsavel = document.getElementById("camposResponsavel");
-
-            if (idade < 18 && idade >= 0) {
-                camposResponsavel.style.display = "block";
-            } else {
-                camposResponsavel.style.display = "none";
-            }
-        }
-
-        // Adiciona um ouvinte de evento para o campo de data de nascimento
-        document.getElementById("dt_nascimento").addEventListener("change", function() {
-            mostrarCamposResponsavel();
-        });
-    </script>
     <script src="js/script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
