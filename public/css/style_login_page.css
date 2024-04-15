@@ -482,3 +482,17 @@ input:checked + .slider:before {
     transition: transform .18s ease;
     transform: translateX(0);
 }
+
+.input-box label,
+.campos-input label {
+    position: absolute;
+    left: 5px;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label,
+.campos-input.input-focused label {
+    top: -5px;
+}
+

@@ -14,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Inicializa o ID da empresa como nulo
         $id_empresa = null;
 
+        $consulta_cpf = "SELECT id_usuario FROM usuarios WHERE cpf_usuario = '$cpf'";
+        $resultado_cpf = $conn->query($consulta_cpf);
+
+        if ($resultado_cpf->num_rows > 0) {
+            echo "<script language='javascript' type='text/javascript'>alert('CPF já cadastrado!');window.location.href='/';</script>";
+            exit();
+        }
+
         // Verifica se o CNPJ foi fornecido
         if (isset($_POST["cnpj"]) && $_POST["cnpj"] != "") {
             $cnpj = $_POST["cnpj"];
