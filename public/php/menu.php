@@ -48,13 +48,13 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-        <a class="navbar-brand" href="index.php"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Sistema de Frequência</a>
+        <a class="navbar-brand" href="#"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Sistema de Frequência</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto" style="gap: 20px;">
+          <ul class="navbar-nav mr-auto" style="gap: 5px; font-size: 15px;">
             <li class="nav-item active">
               <a class="nav-link" href="/cad_user">Cadastrar Usuario</span></a>
             </li>
@@ -69,6 +69,12 @@
             </li>
             <li>
               <a class="nav-link" href="/vinc_usuario">Vincular Usuario a Empresa</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/add_curso">Adicionar Curso</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/vinc_aluno">Vincular Aluno</a>
             </li>
           </ul>
           <div style="display: flex; align-items: center; border: 3px solid #ccc; border-radius: 7px; margin-top:5px;">

@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sistema de Frequência</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
         <style>
       
       .btnLogin:hover {
@@ -44,7 +48,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-        <a class="navbar-brand" href="/listar_aluno"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 50px;">Bem vindo</a>
+        <a class="navbar-brand" href="/listar_ex_aluno"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Bem vindo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,13 +56,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto" style="gap: 20px;">
             <li class="nav-item">
-              <a class="nav-link" href="/enviar_arquivo?id=<?php echo $_SESSION['id_aluno']?>">Enviar Arquivo</a>
+              <a class="nav-link" href="/ver_empresa">Enviar Arquivo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ver_arquivos_enviados?id=<?php echo $_SESSION['id_aluno']?>">Arquivos Enviados</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/formulario_solicitacao?id=<?php echo $_SESSION['id_usuario']?>">Enviar Solicitação</a>
+              <a class="nav-link" href="/listar_secretario">Ver Solicitações</a>
             </li>
           </ul>
         </div>
@@ -68,7 +69,7 @@
               <p style="font-weight: 500; color: #162938; margin: 0;"><?php echo $_SESSION['nome_usuario']; ?></p>
           </div>
         </div>
-        <form action="php/deslogar.php" method="post" style="margin-left: 15px; margin-right: 15px;">
+        <form action="php/deslogar.php" method="post" style="margin-left: 15px;">
             <button type="submit" class="btnLogin" style="margin-top: 5px;">Sair</button>
         </form>
     </nav>

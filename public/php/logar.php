@@ -17,7 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) == 1) {
         // Login bem-sucedido
         $row = mysqli_fetch_assoc($result);
+
+        $query2 = "SELECT id_aluno FROM alunos WHERE id_usuario_aluno = " . $row['id_usuario'];
+        $result2 = mysqli_query($conn, $query2);
+        $row2 = mysqli_fetch_assoc($result2);
+
+
         session_start();
+        $_SESSION['id_aluno'] = $row2['id_aluno'];
         $_SESSION['login'] = $row['login'];
         $_SESSION['nome_usuario'] = $row['nome_usuario'];
         $_SESSION['id_usuario'] = $row['id_usuario'];
@@ -33,6 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: /listar_secretario");
         } else if ($row['cargo'] === "Aluno" || $row['cargo'] === "aluno") {
             header("Location: /listar_aluno");
+        } else if ($row['cargo'] === "ex-aluno" || $row['cargo'] === "Ex-Aluno") {
+            header("Location: /listar_ex_aluno");
         }
         exit(); // Saia após o redirecionamento
     } else {

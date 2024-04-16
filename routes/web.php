@@ -35,7 +35,7 @@ Route::get('/listar_funcionario', function () {
 */
 Route::get('/listar_secretario', function () {
     return view('/cadastrar_empresa/listar_relatorios_secretario'); // Exibe a listagem de relatórios de um funcionário
-})->name('listar_relatorios_funcionario');
+})->name('listar_secretario');
 
 /*
 * Cadastro de empresa
@@ -123,3 +123,28 @@ Route::get('/listar_usuarios_empresa', function (Illuminate\Http\Request $reques
 Route::get('/listar_aluno', function () {
     return view('/alunos/index'); // Exibe a listagem de empresas de um usuário
 })->name('listar_aluno');
+
+
+Route::get('/listar_ex_aluno', function () {
+    return view('/alunos/ex_aluno_index'); // Exibe a listagem de empresas de um usuário
+})->name('listar_ex_aluno');
+
+Route::get('/add_curso', function () {
+    return view('/cursos/add_curso'); // Exibe a listagem de empresas de um usuário
+})->name('add_curso');
+
+Route::get('/vinc_aluno', function () {
+    return view('/alunos/vinc_aluno_formulario'); // Exibe a listagem de empresas de um usuário
+})->name('vinc_aluno');
+
+Route::get('/enviar_arquivo', function () {
+    return view('/alunos/anexar_arquivo'); // Exibe a listagem de empresas de um usuário
+})->name('enviar_arquivo');
+
+Route::get('/ver_arquivos_enviados', function () {
+    return view('/alunos/listar_arquivos'); // Exibe a listagem de empresas de um usuário
+})->name('ver_arquivos_enviados');
+
+Route::get('/formulario_solicitacao', function () {
+    return view('alunos/solicitacao_formulario'); // Exibe a listagem de empresas de um usuário
+})->name('formulario_solicitacao');
