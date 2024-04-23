@@ -87,7 +87,7 @@ if ($result = $conn->query($sql_query)) {?>
                     <h2 style="margin-bottom: 50px;"><img src="img/request.svg" style="height: 60px; width: 60px;" alt=""></h2>
                     <h3 style="margin-bottom: 60px; font-size: 24px;">Solicitar declaração</h3>
                     <p style="margin-bottom: 30px;">Solicite declarações ou segundas<br>vias de certificados clicando abaixo</p>
-                    <a class="btn" style="color: white; margin-top: -5px; background-color: #2b89fc;" href="/solicitar_declaracao?id=<?php echo $_SESSION['id_aluno']?>">Solicitar</a>
+                    <a class="btn" style="color: white; margin-top: -5px; background-color: #2b89fc;" href="/formulario_solicitacao?id=<?php echo $_SESSION['id_aluno']?>">Solicitar</a>
                 </div>
             </div>
         </div>

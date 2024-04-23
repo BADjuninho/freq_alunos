@@ -1,5 +1,8 @@
 <?php
-session_start(); // Certifique-se de que a sessão esteja iniciada
+
+if(session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (isset($_SESSION['cargo'])) {
     $cargo = $_SESSION['cargo'];
@@ -10,7 +13,7 @@ if (isset($_SESSION['cargo'])) {
         require "php/menu_funcionario.php";
     } elseif ($cargo === "secretario" || $cargo === "Secretario" || $cargo === "Secretário") {
         require "php/menu_secretario.php";
-    } elseif ($cargo ==="aluno" || $cargo === "Aluno") {
+    } elseif ($cargo === "aluno" || $cargo === "Aluno") {
         require "php/menu_aluno.php";
     } elseif ($cargo === "ex-aluno" || $cargo === "Ex-Aluno") {
         require "php/menu_ex_aluno.php";
@@ -18,4 +21,5 @@ if (isset($_SESSION['cargo'])) {
 } else {
     echo "A variável de sessão 'cargo' não está definida.";
 }
+
 ?>
