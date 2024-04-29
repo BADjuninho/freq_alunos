@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $novo_nome_arquivo = "$tipo". "_" . "$cpf" . "_" . "$mes" . "_" . "$ano" . ".$extensao";
 
     // Check if id_aluno exists in session
-    if(isset($_SESSION['id_aluno'])) {
-        $id_aluno = $_SESSION['id_aluno'];
+    if(isset($_SESSION['id_usuario'])) {
+        $id_aluno = $_SESSION['id_usuario'];
 
         $diretorio_upload = "C:/xampp/htdocs/freq_alunos/alunos/$cpf";
 
@@ -36,13 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Move o arquivo para o diretório com o novo nome
         if (move_uploaded_file($arquivo_tmp, $caminho_arquivo)) {
             // Insere o caminho do arquivo no banco de dados
-            $sql = "INSERT INTO arquivos (id_aluno_arq, tipo_arquivo, mes, ano, arquivo, status_arquivo) VALUES ('$id_aluno', '$tipo', '$mes', '$ano','$caminho_arquivo', 'Pendente')";
+            $sql = "INSERT INTO arquivos (id_aluno_arq, tipo_arquivo, mes, ano, arquivo, status_arquivo) VALUES ('$id', '$tipo', '$mes', '$ano','$caminho_arquivo', 'Concluida')";
             if ($conn->query($sql) === TRUE) {
-                if ($_SESSION['cargo'] == 'Aluno' || $_SESSION['cargo'] == 'aluno') {
-                    echo "<script language='javascript' type='text/javascript'>alert('Relatorio Anexado com sucesso!');window.location.href='/listar_aluno';</script>"; 
-                } else if ($_SESSION['cargo'] == 'Gerente' || $_SESSION['cargo'] == 'Gerente') {
-                    echo "<script language='javascript' type='text/javascript'>alert('Relatorio Anexado com sucesso!');window.location.href='/listar';</script>"; 
-                }
+                echo "<script language='javascript' type='text/javascript'>alert('Relatorio Anexado com sucesso!');window.location.href='/listar';</script>";
             } else {
                 echo "Erro ao enviar o arquivo: " . $conn->error;
             }
@@ -50,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Erro ao fazer upload do arquivo.";
         }
     } else {
-        echo "<script language='javascript' type='text/javascript'>alert('Erro ao processar o formulário. Por favor, tente novamente.');window.location.href='/listar_aluno';</script>";
+        echo "<script language='javascript' type='text/javascript'>alert('Erro ao processar o formulário. Por favor, tente novamente.');window.location.href='/listar';</script>";
     }
 }
 

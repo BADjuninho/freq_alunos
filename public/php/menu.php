@@ -38,6 +38,27 @@
           font-weight: 500;
           justify-content: end;
       }
+      
+      .navbar-collapse {
+          overflow-x: auto;
+          white-space: nowrap;
+      }
+
+      @media (max-width: 400px) {
+          .navbar-collapse {
+              display: flex;
+          }
+          .seta-nav {
+              display: inline-block;
+              margin-left: auto;
+              margin-right: 10px;
+              width: 30px;
+              height: 30px;
+              background-image: url('img/seta.png');
+              background-size: cover;
+              cursor: pointer;
+          }
+      }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
@@ -48,7 +69,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-        <a class="navbar-brand" href="#"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Sistema de Frequência</a>
+        <a class="navbar-brand" href="#"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Bem Vindo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,19 +97,28 @@
             <li>
               <a class="nav-link" href="/vinc_aluno">Vincular Aluno</a>
             </li>
+            <li>
+              <a class="nav-link" href="/lista_geral_solicitacoes">Ver Solicitações</a>
+            </li>
           </ul>
-          <div style="display: flex; align-items: center; border: 3px solid #ccc; border-radius: 7px; margin-top:5px;">
-            <img src="img/profile.png" alt="" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 10px;">
-            <div style="display: flex; flex-direction: column; padding: 7px;">
-                <p style="font-weight: 500; color: #162938; margin: 0;"><?php echo $_SESSION['nome_usuario']; ?></p>
+          <div style="display: flex; align-items: center;">
+            <div style="display: flex; align-items: center; border: 3px solid #ccc; border-radius: 7px; margin-top:5px;">
+              <img src="img/profile.png" alt="" style="width: 30px; height: 30px; border-radius: 50%; margin: 0 10px;">
+              <div style="display: flex; flex-direction: column; padding: 7px;">
+                  <p style="font-weight: 500; color: #162938; margin: 0;"><?php echo $_SESSION['nome_usuario']; ?></p>
+              </div>
+            </div>
+            <form action="php/deslogar.php" method="post" style="margin-left: 15px;">
+                <button type="submit" class="btnLogin" style="margin-top: 5px;">Sair</button>
+            </form>
             </div>
           </div>
-          <form action="php/deslogar.php" method="post" style="margin-left: 15px;">
-              <button type="submit" class="btnLogin" style="margin-top: 5px;">Sair</button>
-          </form>
-        </div>
     </nav>
-    </body>
+    <script>
+        function setaNav() {
+            document.querySelector('.navbar-collapse').scrollLeft += 50;
+        }
+    </script>
+</body>
 
 </html>
-

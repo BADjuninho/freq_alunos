@@ -56,10 +56,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto" style="gap: 20px;">
             <li class="nav-item">
-              <a class="nav-link" href="/ver_empresa">Enviar Arquivo</a>
+              <a class="nav-link" href="/formulario_solicitacao?id=<?php echo $_SESSION['id_aluno'];?>">Enviar Solicitação</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/ver_arquivos_enviados?id=<?php echo $_SESSION['id_aluno']; ?>">Arquivos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/listar_secretario">Ver Solicitações</a>
+              <a class="nav-link" href="/listar_solicitacoes?id=<?php echo $_SESSION['id_aluno']; ?>">Ver Solicitações</a>
             </li>
           </ul>
         </div>

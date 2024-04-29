@@ -8,11 +8,14 @@ if (!isset($_SESSION['id_aluno'])) {
 require_once "php/conexao.php"; 
 $sql_query = "
 SELECT 
-    *
+    solicitacoes.*, 
+    alunos.nome_aluno as nome_aluno
 FROM 
-    arquivos
-WHERE
-    id_aluno_arq = " . $_SESSION['id_aluno'];
+    solicitacoes
+JOIN
+    alunos ON solicitacoes.id_aluno_sol = alunos.id_aluno
+";
+
 
 if ($result = $conn->query($sql_query)) {?>
     <html lang="pt-br">
@@ -45,29 +48,24 @@ if ($result = $conn->query($sql_query)) {?>
                 <table class="fl-table table-clear table-striped-columns">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">TIPO</th>
-                            <th scope="col">MÊS</th>
-                            <th scope="col">ANO</th>
-                            <th scope="col">ARQUIVO</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">AÇÕES</th>
+                            <th scope="col">ID</th>
+                            <th scope="col" style="max-width: 350px; width: 350px;">NOME</th>
+                            <th scope="col" style="width: 250px;">TIPO</th>
+                            <th scope="col">MENSAGEM</th>
+                            <th scope="col" style="width: 200px;">STATUS</th>
+                            <th scope="col" colspan="2">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody id="tabelaAlunos">
                         <?php while ($row = $result->fetch_assoc()) { ?>
                             <tr>
-                                <td><?php echo $row['tipo_arquivo'];?></td>
-                                <td><?php echo $row['mes']; ?></td>
-                                <td><?php echo $row['ano']; ?></td>
-                                <td><?php echo basename($row['arquivo']); ?></td>
-                                <td><?php echo $row['status_arquivo']; ?></td>
-                                <td><a style="background-color: #1B62B7; border: 1px solid #1B62B7 width: 70px;;" href="php/baixar_arquivo_aluno.php?id=<?php echo $row['id_aluno_arq']; ?>"
-                                class="btn btn-primary btn-secondary"><img src="img/dw-icon.png" alt=""
-                                    style="width: 25px; height: 25px;"></a>
-                                <a style="background-color: #1B62B7; border: 1px solid #1B62B7 width: 70px;" href="php/deletar_arquivo_aluno.php?id=<?php echo $row['id_aluno_arq']; ?>"
-                                onclick="return confirm('Tem certeza que deseja deletar este registro?')"
-                                class="btn btn-secondary"><img src="img/remove.png" alt=""
-                                    style="width: 20px; height: 20px;"></a></td>
+                                <td><?php echo $row['id_aluno_sol']; ?></td>
+                                <td><?php echo $row['nome_aluno']; ?></td>
+                                <td><?php echo $row['tipo'];?></td>
+                                <td><?php echo $row['mensagem']; ?></td>
+                                <td><?php echo $row['status_sol']; ?></td>
+                                <td><a href="atualizar_solicitacao?id=<?php echo $row['id_aluno_sol']; ?>" class="btn btn-primary" style="background-color: #1B62B7; border: none; width: 150px;">Atualizar Status</a>
+                                <a style="background-color: #1B62B7; border: 1px solid #1B62B7; width: 70px;" href="anexar_arquivo_gerente?id=<?php echo $row['id_aluno_sol']; ?>" class="btn btn-primary"><img src="img/clip.png" alt="" style="width: 25px; height: 20px;"></a></td>
                             </tr>
                         <?php } ?>
                     </tbody>

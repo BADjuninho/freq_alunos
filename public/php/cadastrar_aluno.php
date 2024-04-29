@@ -14,6 +14,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se todos os campos estão preenchidos
     if ($nome != "" && $cpf != "" && $usuario != "" && $senha != "" && $perfil != "") {
 
+        $consulta_cpf = "SELECT id_usuario FROM usuarios WHERE cpf_usuario = '$cpf'";
+        $resultado_cpf = $conn->query($consulta_cpf);
+
+        if ($resultado_cpf->num_rows > 0) {
+            echo "<script language='javascript' type='text/javascript'>alert('CPF já cadastrado!');window.location.href='/';</script>";
+            exit();
+        }
+
+        $consulta_cpf_aluno = "SELECT id_aluno FROM alunos WHERE cpf_aluno = '$cpf'";
+        $resultado_cpf_aluno = $conn->query($consulta_cpf_aluno);
+
+        if ($resultado_cpf_aluno->num_rows > 0) {
+            echo "<script language='javascript' type='text/javascript'>alert('CPF já cadastrado!');window.location.href='/';</script>";
+            exit();
+        }
+
         // Calcula a idade com base na data de nascimento fornecida
         $data_nascimento_obj = DateTimeImmutable::createFromFormat('Y-m-d', $dt_nascimento);
         $data_atual = new DateTimeImmutable();
@@ -31,6 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Insere o usuário na tabela de usuários
             $data_nascimento_formatada = $data_nascimento_obj->format('Y-m-d');
             $sql2 = "INSERT INTO usuarios (login, senha, nome_usuario, cpf_usuario, dt_nasc_usuario, cargo) VALUES ('$usuario', '$senha', '$nome', '$cpf', '$data_nascimento_formatada', '$perfil')";
+
+            
+
             if ($conn->query($sql2) === TRUE) {
                 // Obtém o ID do usuário inserido
                 $id_usuario_aluno = $conn->insert_id;
@@ -51,6 +70,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                 } else {
+
+                    $consulta_cpf_responsavel = "SELECT id_responsavel FROM responsaveis WHERE cpf_responsavel = '$cpf'";
+                    $consulta_cpf_responsavel = $conn->query($consulta_cpf_responsavel);
+            
+                    if ($consulta_cpf_responsavel->num_rows > 0) {
+                        echo "<script language='javascript' type='text/javascript'>alert('CPF já cadastrado!');window.location.href='/  ';</script>";
+                        exit();
+                    }
                 
                     $nome_responsavel = $_POST["nome_responsavel"];
                     $cpf_responsavel = $_POST["cpf_responsavel"];

@@ -10,9 +10,9 @@ $sql_query = "
 SELECT 
     *
 FROM 
-    arquivos
+    solicitacoes
 WHERE
-    id_aluno_arq = " . $_SESSION['id_aluno'];
+    id_aluno_sol = " . $_SESSION['id_aluno'];
 
 if ($result = $conn->query($sql_query)) {?>
     <html lang="pt-br">
@@ -45,29 +45,17 @@ if ($result = $conn->query($sql_query)) {?>
                 <table class="fl-table table-clear table-striped-columns">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">TIPO</th>
-                            <th scope="col">MÊS</th>
-                            <th scope="col">ANO</th>
-                            <th scope="col">ARQUIVO</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">AÇÕES</th>
+                            <th scope="col" style="width: 250px;">TIPO</th>
+                            <th scope="col">MENSAGEM</th>
+                            <th scope="col" style="width: 200px;">STATUS</th>
                         </tr>
                     </thead>
                     <tbody id="tabelaAlunos">
                         <?php while ($row = $result->fetch_assoc()) { ?>
                             <tr>
-                                <td><?php echo $row['tipo_arquivo'];?></td>
-                                <td><?php echo $row['mes']; ?></td>
-                                <td><?php echo $row['ano']; ?></td>
-                                <td><?php echo basename($row['arquivo']); ?></td>
-                                <td><?php echo $row['status_arquivo']; ?></td>
-                                <td><a style="background-color: #1B62B7; border: 1px solid #1B62B7 width: 70px;;" href="php/baixar_arquivo_aluno.php?id=<?php echo $row['id_aluno_arq']; ?>"
-                                class="btn btn-primary btn-secondary"><img src="img/dw-icon.png" alt=""
-                                    style="width: 25px; height: 25px;"></a>
-                                <a style="background-color: #1B62B7; border: 1px solid #1B62B7 width: 70px;" href="php/deletar_arquivo_aluno.php?id=<?php echo $row['id_aluno_arq']; ?>"
-                                onclick="return confirm('Tem certeza que deseja deletar este registro?')"
-                                class="btn btn-secondary"><img src="img/remove.png" alt=""
-                                    style="width: 20px; height: 20px;"></a></td>
+                                <td><?php echo $row['tipo'];?></td>
+                                <td><?php echo $row['mensagem']; ?></td>
+                                <td><?php echo $row['status_sol']; ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

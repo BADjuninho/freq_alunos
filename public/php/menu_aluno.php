@@ -55,10 +55,13 @@
               <a class="nav-link" href="/enviar_arquivo?id=<?php echo $_SESSION['id_aluno']?>">Enviar Arquivo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ver_arquivos_enviados?id=<?php echo $_SESSION['id_aluno']?>">Arquivos Enviados</a>
+              <a class="nav-link" href="/ver_arquivos_enviados?id=<?php echo $_SESSION['id_aluno']?>">Arquivos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/formulario_solicitacao?id=<?php echo $_SESSION['id_usuario']?>">Enviar Solicitação</a>
+              <a class="nav-link" href="/formulario_solicitacao?id=<?php echo $_SESSION['id_aluno']?>">Enviar Solicitação</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/listar_solicitacoes?id=<?php echo $_SESSION['id_aluno']?>">Solicitações Enviadas</a>
             </li>
           </ul>
         </div>

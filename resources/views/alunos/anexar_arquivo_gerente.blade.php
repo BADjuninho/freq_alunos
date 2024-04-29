@@ -89,7 +89,7 @@
                             }   
                         ?>
                         <h1 class="text-center mb-4">Anexar Arquivo de Aluno: <?php echo $nome ?></h1>
-                        <form method="POST" action="php/enviar_arquivo_aluno.php" enctype="multipart/form-data">
+                        <form method="POST" action="php/enviar_arquivo_aluno_gerente.php" enctype="multipart/form-data">
                             <input type="hidden" class="form-control" name="id" id="id" required value="<?php echo $id;?>" required>
                             <input type="hidden" class="form-control" name="cpf" id="cpf" value="<?php echo $cpf;?>" required>
                             <div class="mb-3">
@@ -115,14 +115,21 @@
                                 <label for="tipo" class="form-label">Tipo:</label>
                                 <div class="select-dropdown" style="margin-bottom: 15px;">
                                     <select name="tipo" id="tipo">
-                                        <option value="Atestado">Atestado</option>
+                                        <option value="Certificado">Certificado</option>
                                         <option value="Declaração">Declaração</option>
+                                        <option value="Historico Parcial">Historico Parcial</option>
+                                        <option value="Recuperação">Recuperação</option>
+                                        <option value="Segunda Via de certificado">Segunda via de certificado</option>
+                                        <option value="Declaração de Matricula">Declaração De Matricula</option>
+                                        <option value="Declaração De Transferencia">Declaração De Transferencia</option>
+                                        <option value="Segunda Via De Carteirinha Estudantil">Segunda Via De Carteirinha Estudantil</option>
+                                        <option value="Carta de Apresentação para Estagio optativo">Carta de Apresentação para Estagio optativo - Gratuito</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Ano:</label>
-                                <input type="text" class="form-control" name="ano" id="ano" required>
+                                <input type="text" class="form-control" name="ano" id="ano" value="<?php echo date("Y"); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Arquivo:</label>

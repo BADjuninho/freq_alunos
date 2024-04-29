@@ -190,7 +190,7 @@ a:hover{
 }
 
 
-a::after {
+.card a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -203,7 +203,7 @@ a::after {
     transform-origin: right;
     transition: transform .5s;
 }
-a:hover::after {
+.card a:hover::after {
     transform: scaleX(1);
     transform-origin: left;
 }

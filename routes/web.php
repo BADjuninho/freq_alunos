@@ -148,3 +148,19 @@ Route::get('/ver_arquivos_enviados', function () {
 Route::get('/formulario_solicitacao', function () {
     return view('alunos/solicitacao_formulario'); // Exibe a listagem de empresas de um usuário
 })->name('formulario_solicitacao');
+
+Route::get('/listar_solicitacoes', function () {
+    return view('alunos/listar_solicitacoes'); // Exibe a listagem de empresas de um usuário
+})->name('listar_solicitacoes');
+
+Route::get('/lista_geral_solicitacoes', function () {
+    return view('alunos/listar_solicitacoes_geral'); // Exibe a listagem de empresas de um usuário
+})->name('lista_geral_solicitacoes');
+
+Route::get('/atualizar_solicitacao', function () {
+    return view('alunos/atualizar_status'); // Exibe a listagem de empresas de um usuário
+})->name('atualizar_solicitacao');
+
+Route::get('/anexar_arquivo_gerente', function () {
+    return view('alunos/anexar_arquivo_gerente'); // Exibe a listagem de empresas de um usuário
+})->name('anexar_arquivo_gerente');

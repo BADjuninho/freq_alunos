@@ -75,12 +75,21 @@
                         <?php
                             require_once "php/conexao.php";
                             if(isset($_GET["id"])) {
-                                $sql_query = "SELECT * FROM alunos WHERE id_aluno = " . $_GET["id"];
+                                $sql_query = "
+                                SELECT 
+                                    solicitacoes.*, 
+                                    alunos.nome_aluno as nome_aluno
+                                FROM 
+                                    solicitacoes
+                                JOIN
+                                    alunos ON solicitacoes.id_aluno_sol = alunos.id_aluno
+                                ";
                                 if ($result = $conn->query($sql_query)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $nome = $row["nome_aluno"];
-                                        $id = $row["id_aluno"];
-                                        $cpf = $row["cpf_aluno"];
+                                        $id = $row["id_aluno_sol"];
+                                        $status = $row["status_sol"];
+                                        $tipo = $row["tipo"];
                                     }
                                 }
                             } else {
@@ -88,47 +97,23 @@
                                 exit;
                             }   
                         ?>
-                        <h1 class="text-center mb-4">Anexar Arquivo de Aluno: <?php echo $nome ?></h1>
-                        <form method="POST" action="php/enviar_arquivo_aluno.php" enctype="multipart/form-data">
+                        <h1 class="text-center mb-4">Atualizar a solicitação de: <?php echo $nome ?></h1>
+                        <form method="POST" action="php/atualizar_solicitacao.php" enctype="multipart/form-data">
                             <input type="hidden" class="form-control" name="id" id="id" required value="<?php echo $id;?>" required>
-                            <input type="hidden" class="form-control" name="cpf" id="cpf" value="<?php echo $cpf;?>" required>
                             <div class="mb-3">
-                                <label class="form-label">Mês:</label>
+                                <label class="form-label">Status:</label>
                                 <div class="select-dropdown">
-                                    <select name="mes" id="mes">
-                                        <option value="01">Janeiro</option>
-                                        <option value="02">Fevereiro</option>
-                                        <option value="03">Março</option>
-                                        <option value="04">Abril</option>
-                                        <option value="05">Maio</option>
-                                        <option value="06">Junho</option>
-                                        <option value="07">Julho</option>
-                                        <option value="08">Agosto</option>
-                                        <option value="09">Setembro</option>
-                                        <option value="10">Outubro</option>
-                                        <option value="11">Novembro</option>
-                                        <option value="12">Dezembro</option>
+                                    <select name="status" id="status">
+                                        <option value="Pendente">Pendente</option>
+                                        <option value="Aguardando Pagamento">Aguardando Pagamento</option>
+                                        <option value="Concluida">Concluida</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="tipo" class="form-label">Tipo:</label>
-                                <div class="select-dropdown" style="margin-bottom: 15px;">
-                                    <select name="tipo" id="tipo">
-                                        <option value="Atestado">Atestado</option>
-                                        <option value="Declaração">Declaração</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Ano:</label>
-                                <input type="text" class="form-control" name="ano" id="ano" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Arquivo:</label>
-                                <input type="file" class="form-control" name="arquivo" id="arquivo" required>
-                            </div>
-                            <div class="mb-3">
+                                <input type="text" class="form-control" name="tipo" id="tipo" readonly required value="<?php echo $tipo;?>">
+                            <div class="mb-3" style="margin-top: 20px">
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </div>
                         </form>

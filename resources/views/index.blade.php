@@ -104,7 +104,7 @@
             <form action="php/cadastrar_aluno.php" method="post" id="registroForm">
                 <div class="conteudo-aluno-reg">
                     <input type="hidden" name="matricula" id="matricula">
-                    <div class="input-box">
+                    <div class="input-box campos-input">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="text" name="nome" required>
                         <label for="">Nome</label>
@@ -139,22 +139,23 @@
                             </select>
                         </div>
                     </div>
-                    <div class="input-box campos-input">
+                    <div class="input-box">
                         <ion-icon name="map-outline" style="margin-top: 5px;"></ion-icon>
+                        <input type="endereco" name="endereco" required>
                         <label for="">Endereço</label>
-                        <input type="text" name="endereco" id="endereco">
                     </div>
                 </div>
                 <div>
                 <div class="camposResponsavel" id="camposResponsavel" style="display: none; position: relative; float: left;">
                     <a href="#" class="toggle-aluno-reg" onclick="voltar()"><ion-icon style=" margin-top: 50px;width: 50px; height: 50px;" name="arrow-back-outline"></ion-icon></a>
-                    <div class="input-box">
-                        <label for="">Nome do Responsavel</label>
+                    <div class="input-box campos-input">
+                        <ion-icon name="mail-outline"></ion-icon>
                         <input type="text" name="nome_responsavel" id="nome_responsavel">
+                        <label for="">Nome do Responsavel</label>
                     </div>
-                    <div class="input-box">
-                        <label for="">CPF do Responsavel</label>
+                    <div class="input-box campos-input">
                         <input type="text" name="cpf_responsavel" id="cpf_responsavel">
+                        <label for="">CPF do Responsavel</label>
                     </div>
                     <div>
                         <label for="" style="float:left;">Data de Nascimento Do Responsavel:</label>
@@ -163,8 +164,9 @@
                         </div>
                     </div>
                     <div class="input-box">
+                        <ion-icon name="map-outline"></ion-icon>
+                        <input type="endereco_responsavel" name="endereco_responsavel">
                         <label for="">Endereço do Responsavel</label>
-                        <input type="text" name="endereco_responsavel" id="endereco_responsavel">
                     </div>
                 </div>
                 </div>
