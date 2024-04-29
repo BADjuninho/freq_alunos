@@ -38,7 +38,7 @@ if ($result = $conn->query($sql_query)) {?>
 
     <body>
         <center>
-            <h1 style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px;">Arquivos</h1>
+            <h1 style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px;">Solitações</h1>
         </center>
         <section>
             <div class="table-wrapper">
