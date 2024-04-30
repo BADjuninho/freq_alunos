@@ -164,3 +164,7 @@ Route::get('/atualizar_solicitacao', function () {
 Route::get('/anexar_arquivo_gerente', function () {
     return view('alunos/anexar_arquivo_gerente'); // Exibe a listagem de empresas de um usuário
 })->name('anexar_arquivo_gerente');
+
+Route::get('/listar_alunos_gerente', function () {
+    return view('alunos/listar_alunos'); // Exibe a listagem de empresas de um usuário
+})->name('listar_alunos_gerente');

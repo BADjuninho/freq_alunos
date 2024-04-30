@@ -69,7 +69,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-        <a class="navbar-brand" href="#"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Bem Vindo</a>
+        <a class="navbar-brand" href="#"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -87,6 +87,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/listar_usuarios">Listar Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/listar_alunos_gerente">Listar Alunos</a>
             </li>
             <li>
               <a class="nav-link" href="/vinc_usuario">Vincular Usuario a Empresa</a>

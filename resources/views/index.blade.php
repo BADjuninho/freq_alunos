@@ -99,8 +99,8 @@
                 </div>
             </form>
         </div>
-        <div class="caixa-registrar campos" style="width: 300px; display: none;">
-            <h1 class="h1-register" style="Color :#1b62b7; font-weight: 600;">Registrar</h1>
+        <div class="caixa-registrar campos" style="width: 300px; margin: 0 auto; display: none;">
+            <h1 class="h1-register" style="Color :#1b62b7; font-weight: 600; margin-top: 50px;">Registrar</h1>
             <form action="php/cadastrar_aluno.php" method="post" id="registroForm">
                 <div class="conteudo-aluno-reg">
                     <input type="hidden" name="matricula" id="matricula">
@@ -113,6 +113,11 @@
                         <ion-icon name="unlink-outline"></ion-icon>
                         <input type="text" name="cpf" required>
                         <label for="">CPF</label>
+                    </div>
+                    <div class="input-box campos-input">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" name="email" required>
+                        <label for="">E-mail</label>
                     </div>
                     <div class="input-box campos-input">
                         <ion-icon name="person-outline"></ion-icon>

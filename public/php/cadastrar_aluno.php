@@ -4,6 +4,7 @@ require_once "../php/conexao.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
     $cpf = $_POST["cpf"];
+    $email = $_POST["email"];
     $usuario = $_POST["usuario"];
     $senha = $_POST["senha"];
     $perfil = $_POST["status"];
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Sucesso ao cadastrar aluno
                         $id_responsavel = $conn->insert_id;
 
-                        $sql = "INSERT INTO alunos (id_resp_aluno , id_curso_aluno,id_usuario_aluno, nome_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel',null ,'$id_usuario_aluno', '$nome', '$cpf', '$matricula', '$perfil', '$endereco')";
+                        $sql = "INSERT INTO alunos (id_resp_aluno , id_curso_aluno,id_usuario_aluno, nome_aluno, email_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel',null ,'$id_usuario_aluno', '$nome', '$email', '$cpf', '$matricula', '$perfil', '$endereco')";
 
                         if ($conn->query($sql) === TRUE) {
                             echo "<script language='javascript' type='text/javascript'>alert('Aluno cadastrado com sucesso!');window.location.href='/#';</script>";
@@ -89,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($conn->query($sql_responsavel) === TRUE) {
                         $id_responsavel = $conn->insert_id;
-                        $sql = "INSERT INTO alunos (id_resp_aluno ,id_curso_aluno ,id_usuario_aluno, nome_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel', null ,'$id_usuario_aluno',  '$nome', '$cpf', '$matricula', '$perfil', null)";
+                        $sql = "INSERT INTO alunos (id_resp_aluno ,id_curso_aluno ,id_usuario_aluno, nome_aluno, email_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel', null ,'$id_usuario_aluno',  '$nome', '$email', '$cpf', '$matricula', '$perfil', null)";
 
                         if($conn->query($sql)) {
                             echo "<script language='javascript' type='text/javascript'>alert('Aluno cadastrado com sucesso!');window.location.href='/#';</script>";
