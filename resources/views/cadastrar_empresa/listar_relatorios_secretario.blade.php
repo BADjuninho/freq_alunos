@@ -59,9 +59,11 @@
                         <td><?php echo $row['mes']; ?></td>
                         <td><?php echo $row['ano']; ?></td>
                         <td><?php echo basename($row['arquivo']); ?></td>
-                        <td><a style="background-color: #1B62B7; border: 1px solid #1B62B7;" href="baixar_arquivo.php?id=<?php echo $row['id_relatorio']; ?>"
+                        <td>
+                        <a style="background-color: #1B62B7; border: 1px solid #1B62B7;" href="baixar_arquivo.php?id=<?php echo $row['id_relatorio']; ?>"
                                 class="btn btn-primary"><img src="img/dw-icon.png" alt=""
-                                    style="width: 25px; height: 25px;"></a></td>
+                                    style="width: 25px; height: 25px;"></a>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -72,6 +74,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
+        
 </body>
 
 </html>

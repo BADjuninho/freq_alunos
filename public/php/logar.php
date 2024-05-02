@@ -1,51 +1,81 @@
 <?php
 require_once "../php/conexao.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifique as credenciais do usuário no banco de dados
-    $login = $_POST["login"];
-    $senha = $_POST["senha"];
+class AuthController {
+    private $conn;
 
-    // Consulta SQL para verificar as credenciais
-    $query = "SELECT id_usuario, cargo, id_empresa_user, nome_usuario FROM usuarios WHERE login = '$login' AND senha = '$senha'";
-    $result = mysqli_query($conn, $query);
-
-    if (isset($_POST['lembrar']) && $_POST['lembrar'] == 'on') {
-        setcookie('lembrar_usuario', $login, time() + (86400 * 30), "/");
+    public function __construct() {
+        $this->conn = $GLOBALS['conn'];
     }
 
-    if (mysqli_num_rows($result) == 1) {
-        // Login bem-sucedido
-        $row = mysqli_fetch_assoc($result);
+    public function loginAutomatico($login, $senha) {
+        // Consulta SQL para verificar as credenciais
+        $query = "SELECT id_usuario, cargo, id_empresa_user, nome_usuario FROM usuarios WHERE login = ? AND senha = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ss", $login, $senha);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        $query2 = "SELECT id_aluno FROM alunos WHERE id_usuario_aluno = " . $row['id_usuario'];
-        $result2 = mysqli_query($conn, $query2);
-        $row2 = mysqli_fetch_assoc($result2);
+        if ($result->num_rows == 1) {
+            // Login bem-sucedido
+            $row = $result->fetch_assoc();
 
+            session_start();
+            $_SESSION['login'] = $login;
+            $_SESSION['nome_usuario'] = $row['nome_usuario'];
+            $_SESSION['id_usuario'] = $row['id_usuario'];
+            $_SESSION['cargo'] = $row['cargo'];
+            $_SESSION['id_empresa_user'] = $row['id_empresa_user'];
 
-        session_start();
-        $_SESSION['id_aluno'] = $row2['id_aluno'];
-        $_SESSION['login'] = $row['login'];
-        $_SESSION['nome_usuario'] = $row['nome_usuario'];
-        $_SESSION['id_usuario'] = $row['id_usuario'];
-        $_SESSION['cargo'] = $row['cargo'];
-        $_SESSION['id_empresa_user'] = $row['id_empresa_user'];
+            // Redirecione com base no cargo do usuário
+            $this->redirectUser($row['cargo']);
+        } else {
+            // Login inválido
+            echo "<script language='javascript' type='text/javascript'>alert('Credenciais inválidas!');window.location.href='/';</script>";
+        }
+    }
 
-        // Redirecione com base no cargo do usuário
-        if ($row['cargo'] === "gerente" || $row['cargo'] === "Gerente")  {
-            header("Location: /listar");
-        } else if ($row['cargo'] === "funcionario" || $row['cargo'] === "Funcionario") {
-            header("Location: /listar_funcionario");
-        } else if ($row['cargo'] === "secretario" || $row['cargo'] === "Secretario" || $row['cargo'] === "Secretário") {
-            header("Location: /listar_secretario");
-        } else if ($row['cargo'] === "Aluno" || $row['cargo'] === "aluno") {
-            header("Location: /listar_aluno");
-        } else if ($row['cargo'] === "ex-aluno" || $row['cargo'] === "Ex-Aluno") {
-            header("Location: /listar_ex_aluno");
+    private function redirectUser($cargo) {
+        switch ($cargo) {
+            case "gerente":
+            case "Gerente":
+                header("Location: /listar");
+                break;
+            case "funcionario":
+            case "Funcionario":
+                header("Location: /listar_funcionario");
+                break;
+            case "secretario":
+            case "Secretario":
+            case "Secretário":
+                header("Location: /listar_secretario");
+                break;
+            case "Aluno":
+            case "aluno":
+                header("Location: /listar_aluno");
+                break;
+            case "ex-aluno":
+            case "Ex-Aluno":
+                header("Location: /listar_ex_aluno");
+                break;
+            default:
+                // Redirecione para uma página padrão ou mostre uma mensagem de erro
+                echo "<script language='javascript' type='text/javascript'>alert('Cargo inválido!');window.location.href='/';</script>";
+                break;
         }
         exit(); // Saia após o redirecionamento
-    } else {
-        // Login inválido
-        echo "<script language='javascript' type='text/javascript'>alert('Credenciais inválidas!');window.location.href='/';</script>";
     }
 }
+
+// Uso do controlador para fazer login
+$authController = new AuthController();
+
+// Verifique se o método de requisição é POST e se os parâmetros de login foram enviados
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"]) && isset($_POST["senha"])) {
+    $login = $_POST["login"];
+    $senha = $_POST["senha"];
+    $authController->loginAutomatico($login, $senha);
+} else {
+    echo "<script language='javascript' type='text/javascript'>alert('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente.');window.location.href='/';</script>";
+}
+?>

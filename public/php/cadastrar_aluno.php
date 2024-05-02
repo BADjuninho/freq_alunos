@@ -1,3 +1,4 @@
+
 <?php
 require_once "../php/conexao.php";
 
@@ -49,8 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data_nascimento_formatada = $data_nascimento_obj->format('Y-m-d');
             $sql2 = "INSERT INTO usuarios (login, senha, nome_usuario, cpf_usuario, dt_nasc_usuario, cargo) VALUES ('$usuario', '$senha', '$nome', '$cpf', '$data_nascimento_formatada', '$perfil')";
 
-            
-
             if ($conn->query($sql2) === TRUE) {
                 // Obtém o ID do usuário inserido
                 $id_usuario_aluno = $conn->insert_id;
@@ -62,43 +61,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Sucesso ao cadastrar aluno
                         $id_responsavel = $conn->insert_id;
 
-                        $sql = "INSERT INTO alunos (id_resp_aluno , id_curso_aluno,id_usuario_aluno, nome_aluno, email_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel',null ,'$id_usuario_aluno', '$nome', '$email', '$cpf', '$matricula', '$perfil', '$endereco')";
+                        $sql = "INSERT INTO alunos (id_resp_aluno , id_curso_aluno,id_usuario_aluno, nome_aluno, email_aluno, cpf_aluno, matricula, perfil, endereco, data_nascimento) VALUES ('$id_responsavel',null ,'$id_usuario_aluno', '$nome', '$email', '$cpf', '$matricula', '$perfil', '$endereco', '$data_nascimento_formatada')";
 
                         if ($conn->query($sql) === TRUE) {
-                            echo "<script language='javascript' type='text/javascript'>alert('Aluno cadastrado com sucesso!');window.location.href='/#';</script>";
+                            // Chamada para efetuar login automaticamente após cadastrar o aluno
+                            require_once "logar.php";
+                            $authController->loginAutomatico($usuario, $senha);
+                            exit(); // Saia após o redirecionamento
                         } else {
                             echo "Erro ao cadastrar aluno: " . $conn->error;
                         }
                     }
                 } else {
-
-                    $consulta_cpf_responsavel = "SELECT id_responsavel FROM responsaveis WHERE cpf_responsavel = '$cpf'";
-                    $consulta_cpf_responsavel = $conn->query($consulta_cpf_responsavel);
-            
-                    if ($consulta_cpf_responsavel->num_rows > 0) {
-                        echo "<script language='javascript' type='text/javascript'>alert('CPF já cadastrado!');window.location.href='/  ';</script>";
-                        exit();
-                    }
+                        $consulta_cpf_responsavel = "SELECT id_responsavel FROM responsaveis WHERE cpf_responsavel = '$cpf'";
+                        $consulta_cpf_responsavel = $conn->query($consulta_cpf_responsavel);
                 
-                    $nome_responsavel = $_POST["nome_responsavel"];
-                    $cpf_responsavel = $_POST["cpf_responsavel"];
-                    $data_nascimento_responsavel = $_POST["dt_nascimento_responsavel"];
-                    $data_nascimento_responsavel_obj = DateTimeImmutable::createFromFormat('Y-m-d', $data_nascimento_responsavel);
-                    $data_nascimento_responsavel_formatada = $data_nascimento_responsavel_obj->format('Y-m-d');
-                    $endereco_responsavel = $_POST["endereco_responsavel"];
-                    $sql_responsavel = "INSERT INTO responsaveis(nome_responsavel, cpf_responsavel, dt_nasc_responsavel, endereco_responsavel) VALUES ('$nome_responsavel', '$cpf_responsavel', '$data_nascimento_responsavel_formatada', '$endereco_responsavel')";
-
-                    if ($conn->query($sql_responsavel) === TRUE) {
-                        $id_responsavel = $conn->insert_id;
-                        $sql = "INSERT INTO alunos (id_resp_aluno ,id_curso_aluno ,id_usuario_aluno, nome_aluno, email_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel', null ,'$id_usuario_aluno',  '$nome', '$email', '$cpf', '$matricula', '$perfil', null)";
-
-                        if($conn->query($sql)) {
-                            echo "<script language='javascript' type='text/javascript'>alert('Aluno cadastrado com sucesso!');window.location.href='/#';</script>";
+                        if ($consulta_cpf_responsavel->num_rows > 0) {
+                            echo "<script language='javascript' type='text/javascript'>alert('CPF já cadastrado!');window.location.href='/  ';</script>";
+                            exit();
                         }
+                    
+                        $nome_responsavel = $_POST["nome_responsavel"];
+                        $cpf_responsavel = $_POST["cpf_responsavel"];
+                        $data_nascimento_responsavel = $_POST["dt_nascimento_responsavel"];
+                        $data_nascimento_responsavel_obj = DateTimeImmutable::createFromFormat('Y-m-d', $data_nascimento_responsavel);
+                        $data_nascimento_responsavel_formatada = $data_nascimento_responsavel_obj->format('Y-m-d');
+                        $endereco_responsavel = $_POST["endereco_responsavel"];
+                        $sql_responsavel = "INSERT INTO responsaveis(nome_responsavel, cpf_responsavel, dt_nasc_responsavel, endereco_responsavel) VALUES ('$nome_responsavel', '$cpf_responsavel', '$data_nascimento_responsavel_formatada', '$endereco_responsavel')";
 
-                    } else {
-                        echo "Erro ao cadastrar aluno: " . $conn->error;
-                    }
+                        if ($conn->query($sql_responsavel) === TRUE) {
+                            $id_responsavel = $conn->insert_id;
+                            $sql = "INSERT INTO alunos (id_resp_aluno ,id_curso_aluno ,id_usuario_aluno, nome_aluno, email_aluno, cpf_aluno, matricula, perfil, endereco) VALUES ('$id_responsavel', null ,'$id_usuario_aluno',  '$nome', '$email', '$cpf', '$matricula', '$perfil', null)";
+
+                            if($conn->query($sql)) {
+                                echo "<script language='javascript' type='text/javascript'>alert('Aluno cadastrado com sucesso!');window.location.href='/#';</script>";
+                            }
+
+                        } else {
+                            echo "Erro ao cadastrar aluno: " . $conn->error;
+                        }
                 }
             } else {
                 echo "Erro ao cadastrar usuário: " . $conn->error;
@@ -113,3 +114,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+

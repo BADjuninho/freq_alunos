@@ -113,7 +113,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Ano:</label>
-                                <input type="text" class="form-control" name="ano" id="ano" required>
+                                <input type="text" class="form-control" name="ano" value="<?php echo date("Y"); ?>" id="ano" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Arquivo:</label>

@@ -62,7 +62,7 @@ Route::get('/listar_usuarios', function () {
 * Listagem de empresas de um usuário
 */
 Route::get('/ver_empresa', function () {
-    return view('/cadastrar_usuario/listar_usuarios_empresa'); // Exibe a listagem de empresas de um usuário
+    return view('/cadastrar_empresa/listar_usuarios_empresa'); // Exibe a listagem de empresas de um usuário
 })->name('listar_empresas_usuario');
 
 /*
@@ -168,3 +168,8 @@ Route::get('/anexar_arquivo_gerente', function () {
 Route::get('/listar_alunos_gerente', function () {
     return view('alunos/listar_alunos'); // Exibe a listagem de empresas de um usuário
 })->name('listar_alunos_gerente');
+
+Route::get('/update_aluno', function (Illuminate\Http\Request $request) {
+    $id = $request->query('id'); // Obtém o ID do usuário da URL
+    return view('/alunos/update', [$id=>'id']); // Exibe o formulário de edição de usuário com ID pré-inserido
+})->name('editar_usuario');

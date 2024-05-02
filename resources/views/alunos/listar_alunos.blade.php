@@ -1,6 +1,5 @@
 <?php
 
-
 if (!isset($_SESSION['id_aluno'])) {
     require "php/verificar_cargo.php";
 }
@@ -8,9 +7,10 @@ if (!isset($_SESSION['id_aluno'])) {
 require_once "php/conexao.php"; 
 $sql_query = "
 SELECT
+    alunos.id_usuario_aluno,
     alunos.email_aluno,
     alunos.id_aluno,
-    cursos.nome_curso AS nome_curso,
+    IFNULL(cursos.nome_curso, 'Não possui curso') AS nome_curso,
     alunos.nome_aluno, 
     alunos.cpf_aluno, 
     alunos.matricula, 
@@ -19,7 +19,7 @@ SELECT
     usuarios.nome_usuario AS nome_usuario
 FROM 
     alunos
-INNER JOIN cursos ON alunos.id_curso_aluno = cursos.id_curso
+LEFT JOIN cursos ON alunos.id_curso_aluno = cursos.id_curso
 INNER JOIN usuarios ON alunos.id_usuario_aluno = usuarios.id_usuario
 LEFT JOIN responsaveis ON alunos.id_resp_aluno = responsaveis.id_responsavel";
 
@@ -50,7 +50,7 @@ if ($result = $conn->query($sql_query)) {?>
             <h1 style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px;">Alunos</h1>
         </center>
         <section>
-            <div class="table-wrapper">
+            <div class="table-wrapper" style="margin-left: 40px;">
                 <table class="fl-table table-clear table-striped-columns">
                     <thead class="table-dark">
                         <tr>
@@ -62,6 +62,7 @@ if ($result = $conn->query($sql_query)) {?>
                             <th scope="col">MATRÍCULA</th>
                             <th scope="col">PERFIL</th>
                             <th scope="col">ENDEREÇO</th>
+                            <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody id="tabelaAlunos">
@@ -75,6 +76,15 @@ if ($result = $conn->query($sql_query)) {?>
                                 <td><?php echo $row['matricula']; ?></td>
                                 <td><?php echo $row['perfil']; ?></td>
                                 <td><?php echo $row['endereco']; ?></td>
+                                <td>
+                                    <a style="background-color: #1B62B7; border: 1px solid #1B62B7; width: 70px;" href="/update_aluno?id=<?php echo $row['id_usuario_aluno']; ?>"
+                                    class="btn btn-primary btn-secondary"><img src="img/edit.png" alt=""
+                                        style="width: 25px; height: 20px;"></a> 
+                                    <a  style="background-color: #1B62B7; border: 1px solid #1B62B7; width: 70px;" href="php/deletar_aluno.php?id=<?php echo $row['id_usuario_aluno']; ?>"
+                                        onclick="return confirm('Tem certeza que deseja deletar este registro?')"
+                                        class="btn btn-secondary"><img src="img/remove.png" alt=""
+                                            style="width: 20px; height: 20px;"></a>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
