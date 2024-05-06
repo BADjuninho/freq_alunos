@@ -49,7 +49,7 @@ class AuthController {
             }
         }
     }
-
+    
     public function loginAutomatico($login, $senha) {
         // Consulta SQL para verificar as credenciais
         $query = "SELECT id_usuario, cargo, id_empresa_user, nome_usuario FROM usuarios WHERE login = ? AND senha = ?";

@@ -131,29 +131,30 @@ function voltar() {
 
 
 document.getElementById('registroForm').addEventListener('submit', function(event) {
-event.preventDefault(); // Impede o comportamento padrão do formulário
+    event.preventDefault(); // Impede o comportamento padrão do formulário
 
-// Coleta os dados do formulário
-const formData = new FormData(this);
+    // Coleta os dados do formulário
+    const formData = new FormData(this);
 
-// Envia os dados para o arquivo PHP usando fetch
-fetch('php/cadastrar_aluno.php', {
-    method: 'POST',
-    body: formData
-})
-.then(response => {
-    // Verifica se a requisição foi bem-sucedida
-    if (response.ok) {
-        // Faça algo se a requisição foi bem-sucedida, como redirecionar o usuário
-        window.location.href = 'sucesso.html'; // Página de sucesso, por exemplo
-    } else {
-        // Faça algo se a requisição falhou
+    // Envia os dados para o arquivo PHP usando fetch
+    fetch('php/cadastrar_aluno.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // Verifica se a requisição foi bem-sucedida
+        if (response.ok) {
+            // Redireciona para logar.php
+            window.location.href = 'php/logar.php';
+        } else {
+            // Faça algo se a requisição falhou
+            alert('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente.');
+        }
+    })
+    .catch(error => {
+        // Faça algo se houver um erro durante a requisição
+        console.error('Ocorreu um erro:', error);
         alert('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente.');
-    }
-})
-.catch(error => {
-    // Faça algo se houver um erro durante a requisição
-    console.error('Ocorreu um erro:', error);
-    alert('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente.');
+    });
 });
-});
+
