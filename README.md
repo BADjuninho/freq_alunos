@@ -47,8 +47,8 @@ Funcionalidades do Sistema
    * Cadastro de Cursos: O Gerente pode cadastrar novos cursos no sistema.
 
 Níveis de Acesso e Permissões
-Gerente (Conta Master)
 
+Gerente (Conta Master)
     * Listar, cadastrar, atualizar e excluir empresas, usuários, alunos e cursos.
     * Vincular alunos a cursos.
     * Visualizar e gerenciar solicitações de alunos.
