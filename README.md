@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+O sistema de frequência escolar é uma plataforma digital projetada para gerenciar a frequência dos alunos, além de permitir a interação entre alunos, empresas e a administração da escola. O sistema possui diferentes níveis de acesso e funcionalidades específicas para cada tipo de usuário: Gerente (conta master), Secretários, Alunos e Ex-alunos.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Funcionalidades do Sistema
 
-## About Laravel
+1. Empresas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Cadastro de Empresas: O Gerente pode cadastrar novas empresas no sistema.
+* Listagem de Empresas: O Gerente pode visualizar a lista completa de empresas cadastradas.
+* Atualização de Empresas: O Gerente pode atualizar as informações das empresas cadastradas.
+* Exclusão de Empresas: O Gerente pode excluir empresas do sistema.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Usuários
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Cadastro de Usuários: O Gerente pode cadastrar novos usuários (secretários).
+* Listagem de Usuários: O Gerente pode visualizar a lista completa de usuários cadastrados.
+* Atualização de Usuários: O Gerente pode atualizar as informações dos usuários cadastrados.
+* Exclusão de Usuários: O Gerente pode excluir usuários do sistema.
 
-## Learning Laravel
+3. Alunos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Cadastro de Alunos: Alunos podem se cadastrar no sistema.
+* Listagem de Alunos: O Gerente pode visualizar a lista completa de alunos cadastrados.
+* Atualização de Alunos: O Gerente pode atualizar as informações dos alunos cadastrados.
+* Exclusão de Alunos: O Gerente pode excluir alunos do sistema.
+* Vinculação de Alunos a Cursos: O Gerente pode vincular alunos a cursos específicos.
+* Envio de Atestados/Declarações: Alunos podem enviar atestados ou declarações.
+* Listagem de Atestados/Declarações: Alunos podem listar os arquivos de atestados ou declarações enviados.
+* Envio de Solicitações: Alunos podem enviar solicitações (ex: segunda via de certificado).
+* Listagem de Solicitações: Alunos podem listar suas solicitações enviadas.
+* Atualização do Status de Solicitações: O Gerente pode atualizar o status das solicitações dos alunos.
+* Anexar Arquivos às Solicitações: O Gerente pode anexar arquivos às solicitações dos alunos.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. Ex-Alunos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Cadastro de Ex-Alunos: Ex-alunos podem se cadastrar no sistema.
+* Envio de Solicitações: Ex-alunos podem enviar solicitações.
+* Listagem de Solicitações: Ex-alunos podem listar suas solicitações enviadas.
 
-## Laravel Sponsors
+5. Secretários
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* Visualização de Relatórios de Frequência: Secretários podem visualizar os relatórios de frequência dos alunos vinculados à empresa.
+* Download de Relatórios de Frequência: Secretários podem baixar os relatórios de frequência dos alunos.
+* Listagem de Usuários Vinculados: Secretários podem listar os usuários vinculados à sua empresa.
 
-### Premium Partners
+6. Cursos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+* Cadastro de Cursos: O Gerente pode cadastrar novos cursos no sistema.
 
-## Contributing
+Níveis de Acesso e Permissões
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Gerente (Conta Master)
 
-## Code of Conduct
+* Listar, cadastrar, atualizar e excluir empresas, usuários, alunos e cursos.
+* Vincular alunos a cursos.
+* Visualizar e gerenciar solicitações de alunos.
+* Anexar arquivos às solicitações.
+* Atualizar status das solicitações.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Secretários
 
-## Security Vulnerabilities
+* Visualizar e baixar relatórios de frequência.
+* Listar usuários vinculados à empresa.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. Alunos
 
-## License
+* Enviar atestados ou declarações.
+* Listar atestados ou declarações enviados.
+* Enviar solicitações.
+* Listar solicitações enviadas.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. Ex-Alunos
+
+* Enviar solicitações.
+* Listar solicitações enviadas.
+* 
+
+Para usar ele é preciso ter o composer instalado, então abra a pasta do projeto no VScode ou no seu editor de codigo, e no terminal você irá digitar php artisan serve, não se esqueça de importar o banco de dados ;)
