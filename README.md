@@ -74,4 +74,4 @@ Gerente (Conta Master)
 * Listar solicitações enviadas.
 * 
 
-Para usar ele é preciso ter o composer instalado, então abra a pasta do projeto no VScode ou no seu editor de codigo, e no terminal você irá digitar php artisan serve, não se esqueça de importar o banco de dados ;)
+Para usar ele é preciso ter o composer instalado, então abra a pasta do projeto no VScode ou no seu editor de codigo, e no terminal você irá digitar php artisan serve, e também não se esqueça de importar o banco de dados com o nome de freq_alunos ;)
