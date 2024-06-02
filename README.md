@@ -72,3 +72,6 @@ Gerente (Conta Master)
 
 * Enviar solicitações.
 * Listar solicitações enviadas.
+* 
+
+Para usar ele é preciso ter o composer instalado, então abra a pasta do projeto no VScode ou no seu editor de codigo, e no terminal você irá digitar php artisan serve, não se esqueça de importar o banco de dados ;)
