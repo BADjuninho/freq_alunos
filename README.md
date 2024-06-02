@@ -50,11 +50,11 @@ Níveis de Acesso e Permissões
 
 Gerente (Conta Master)
 
-* Listar, cadastrar, atualizar e excluir empresas, usuários, alunos e cursos.
-* Vincular alunos a cursos.
-* Visualizar e gerenciar solicitações de alunos.
-* Anexar arquivos às solicitações.
-* Atualizar status das solicitações.
+    * Listar, cadastrar, atualizar e excluir empresas, usuários, alunos e cursos.
+    * Vincular alunos a cursos.
+    * Visualizar e gerenciar solicitações de alunos.
+    * Anexar arquivos às solicitações.
+    * Atualizar status das solicitações.
 
 1. Secretários
 
