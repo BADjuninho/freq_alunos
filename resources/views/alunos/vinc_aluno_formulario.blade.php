@@ -90,9 +90,28 @@
                             </div>
                         </div>
                         <input type="hidden" name="id" id="id">
-                        <div class="campo-input" style="margin-top: 2.2%;">
-                            <label for="nome" class="form-label" style="font-size:15px;">CPF do Usuario:</label>
-                            <input type="text" class="form-control" name="cpf" id="cpf" required>
+                        <div class="campo-input" style="border:none;">
+                            <label class="form-label" style="font-size: 16px;">Selecione O Aluno: </label>
+                            <div class="select-dropdown">
+                                <select name="cpf" id="cpf" required>
+                                <?php
+                                require_once "php/conexao.php";
+
+                                $stmt = $conn->prepare("SELECT cpf_usuario, nome_usuario FROM usuarios WHERE cargo = 'Aluno'");
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                // Preenche o <select> com os dados obtidos
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option name='cpf' value='" . $row['cpf_usuario'] . "'>" . $row['nome_usuario'] . " - " . $row['cpf_usuario'] . "</option>";
+                                }
+
+                                // Fecha a consulta e a conexão
+                                $stmt->close();
+                                $conn->close();
+                                ?>
+                            </select>
+                            </div>
                         </div>
                         <button type="submit" class="btn-login btn-primary">Vincular</button>
                     </div>

@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 $atualizar_curso = "UPDATE alunos SET id_curso_aluno = '$id_curso' WHERE cpf_aluno = '$cpf'";
                 if ($conn->query($atualizar_curso) === TRUE) {
-                    echo "<script language='javascript' type='text/javascript'>alert('Aluno vinculado ao curso com sucesso!');window.location.href='/vinc_usuario';</script>";
+                    echo "<script language='javascript' type='text/javascript'>alert('Aluno vinculado ao curso com sucesso!');window.location.href='/vinc_aluno';</script>";
                 } else {
                     echo "Erro ao vincular aluno ao curso: " . $conn->error;
                 }
@@ -31,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Erro ao atualizar vagas disponíveis: " . $conn->error;
             }
         } else {
-            echo "<script language='javascript' type='text/javascript'>alert('Não há vagas disponíveis para este curso!');window.location.href='/vinc_usuario';</script>";
+            echo "<script language='javascript' type='text/javascript'>alert('Não há vagas disponíveis para este curso!');window.location.href='/vinc_aluno';</script>";
         }
     } else {
         echo "Curso não encontrado.";
     }
 } else {
-    echo "<script language='javascript' type='text/javascript'>alert('Erro ao processar o formulário');window.location.href='/vinc_usuario';</script>";
+    echo "<script language='javascript' type='text/javascript'>alert('Erro ao processar o formulário');window.location.href='/vinc_aluno';</script>";
 }
 
 $conn->close();

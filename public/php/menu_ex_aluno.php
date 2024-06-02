@@ -48,18 +48,15 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-        <a class="navbar-brand" href="/listar_ex_aluno"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 0px;">Bem vindo</a>
+        <a class="navbar-brand" href="/listar_ex_aluno"><img src="img/senai-logo.png" alt="" style="height: 3rem; width: auto; margin-right: 40px; margin-left: 10%;">Bem vindo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 50px;">
           <ul class="navbar-nav mr-auto" style="gap: 20px;">
             <li class="nav-item">
               <a class="nav-link" href="/formulario_solicitacao?id=<?php echo $_SESSION['id_aluno'];?>">Enviar Solicitação</a>
-            </li>
-            <li>
-              <a class="nav-link" href="/ver_arquivos_enviados?id=<?php echo $_SESSION['id_aluno']; ?>">Arquivos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/listar_solicitacoes?id=<?php echo $_SESSION['id_aluno']; ?>">Ver Solicitações</a>

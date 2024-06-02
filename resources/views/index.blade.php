@@ -146,7 +146,7 @@
                     </div>
                     <div class="input-box">
                         <ion-icon name="map-outline" style="margin-top: 5px;"></ion-icon>
-                        <input type="endereco" name="endereco">
+                        <input type="endereco" name="endereco" required>
                         <label for="">Endereço</label>
                     </div>
                 </div>
